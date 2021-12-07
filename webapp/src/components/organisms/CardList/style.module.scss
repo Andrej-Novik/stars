@@ -1,0 +1,57 @@
+@import "../../../assets/styles/common.scss";
+
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 10rem);
+  padding: 5rem 0 0 0;
+  .container {
+    @include container;
+    .block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 1.5rem 0;
+    }
+    .btns {
+      button {
+        padding: 0.2rem;
+        margin: 0 0 0 0.5rem;
+      }
+    }
+    .title {
+      @include H32;
+    }
+    .error {
+      @include H32;
+      font-size: 2rem;
+      color: red;
+    }
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 0 0 2.5rem 0;
+      @include custom(850) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+.link {
+  max-width: 10rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+  margin: 0 0 2.5rem 0;
+  img {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 1.25rem;
+    margin: 0 0.5rem 0 0;
+  }
+}
