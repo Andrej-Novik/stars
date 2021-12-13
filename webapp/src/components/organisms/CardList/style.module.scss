@@ -2,10 +2,14 @@
 
 .wrapper {
   background-color: $grayBg;
-  min-height: calc(100vh - 10rem);
-  padding: 5rem 0 0 0;
+  min-height: calc(100vh - 5rem);
+  padding: 2rem 0 0 0;
   .container {
     @include container;
+    .title {
+      @include H32;
+      margin: 0 0 2rem 0;
+    }
     .block {
       display: flex;
       align-items: center;
@@ -28,10 +32,13 @@
     }
     .list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
       padding: 0 0 2.5rem 0;
-      @include custom(850) {
+      @include custom(1024) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include custom(600) {
         grid-template-columns: 1fr;
       }
     }
@@ -54,4 +61,7 @@
     flex: 0 0 1.25rem;
     margin: 0 0.5rem 0 0;
   }
+}
+p {
+  margin: 0 0 2.5rem 0;
 }

@@ -2,91 +2,89 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import CardList from "./component";
 import {
-  getObjectsFromBD,
-  //setObjectsIntoBD,
-  setStateObjects,
-  setSortObjects,
-  setLikedObjects,
-  deleteObjectFromBD,
-  setSearchObjects,
-  setObjectsLength,
+  getStarsFromBD,
+  setStarsIntoBD,
+  setStateStars,
+  setSortStars,
+  setLikedStars,
+  deleteStarFromBD,
+  setSearchStars,
+  setStarsLength,
   setPaginationPage,
   setCurrentPage,
   isSearch as IsSearch,
-} from "../../../useCases/actions/objects";
-// import json from "../../../content.json";
+} from "../../../redux/actions/stars";
+import json from "../../../stars.json";
 
 const CardListContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getObjectsFromBD());
+    dispatch(getStarsFromBD());
   }, []);
 
-  const sortBy = useSelector((state) => state.objects.sortBy);
+  const sortBy = useSelector((state) => state.stars.sortBy);
 
   useEffect(() => {
-    dispatch(setSortObjects());
+    dispatch(setSortStars());
   }, [sortBy]);
 
-  const objects = useSelector((state) => state.objects.objects);
-  const objectsLength = useSelector((state) => state.objects.objectsLength);
-  const currentPage = useSelector((state) => state.objects.currentPage);
-  const isError = useSelector((state) => state.objects.isError);
-  const isLoader = useSelector((state) => state.objects.isLoader);
-  let likedData = useSelector((state) => state.objects.likedObjects);
-
-  const searchObject = useSelector((state) => state.objects.searchObject);
-  const isSearch = useSelector((state) => state.objects.isSearch);
+  const stars = useSelector((state) => state.stars.stars);
+  const starsLength = useSelector((state) => state.stars.starsLength);
+  const currentPage = useSelector((state) => state.stars.currentPage);
+  const isLoader = useSelector((state) => state.stars.isLoader);
+  let likedData = useSelector((state) => state.stars.likedStars);
+  const searchStar = useSelector((state) => state.stars.searchStar);
+  const isSearch = useSelector((state) => state.stars.isSearch);
 
   useEffect(() => {
-    dispatch(setObjectsLength(objects.length));
-  }, [objects, objectsLength]);
+    dispatch(setStarsLength(stars.length));
+  }, [stars, starsLength]);
 
-  const sortUp = (object) => {
-    const obj = object.sort((a, b) => (a.rate > b.rate ? 1 : -1));
-    dispatch(setStateObjects(obj));
-    dispatch(setSortObjects("up"));
+  const sortUp = (star) => {
+    const st = star.sort((a, b) => (a.rate > b.rate ? 1 : -1));
+    dispatch(setStateStars(st));
+    dispatch(setSortStars("up"));
   };
 
-  const sortDown = (object) => {
-    const obj = object.sort((a, b) => (a.rate > b.rate ? -1 : 1));
-    dispatch(setStateObjects(obj));
-    dispatch(setSortObjects("down"));
+  const sortDown = (star) => {
+    const st = star.sort((a, b) => (a.rate > b.rate ? -1 : 1));
+    dispatch(setStateStars(st));
+    dispatch(setSortStars("down"));
   };
 
-  const deleteObg = (id) => {
-    dispatch(deleteObjectFromBD(id));
+  const deleteSt = (id) => {
+    dispatch(deleteStarFromBD(id));
   };
 
-  const setLiked = (obj) => {
+  const setLiked = (st) => {
     let cards = JSON.parse(localStorage.getItem("liked")) || [];
-    if (obj.isLiked) {
-      cards = cards.filter((i) => i.title !== obj.title);
+    if (st.isLiked) {
+      cards = cards.filter((i) => i.title !== st.title);
       localStorage.setItem("liked", JSON.stringify(cards));
-      dispatch(setLikedObjects());
+      dispatch(setLikedStars());
     } else {
       if (cards.length) {
         let is = false;
         cards.forEach((i) => {
-          if (obj.id === i.id) {
+          if (st.id === i.id) {
             is = true;
           }
         });
         if (!is) {
-          cards.push(obj);
+          cards.push(st);
           localStorage.setItem("liked", JSON.stringify(cards));
-          dispatch(setLikedObjects());
+          dispatch(setLikedStars());
         }
       } else {
-        cards.push(obj);
+        cards.push(st);
         localStorage.setItem("liked", JSON.stringify(cards));
-        dispatch(setLikedObjects());
+        dispatch(setLikedStars());
       }
     }
   };
   const backToCatalog = () => {
     dispatch(IsSearch(false));
-    dispatch(setSearchObjects([]));
+    dispatch(setSearchStars([]));
   };
 
   const onChangePage = (number, side = null) => {
@@ -99,52 +97,42 @@ const CardListContainer = () => {
       }
     }
     if (!number && side === "next") {
-      if (currentPage < Math.ceil(objectsLength / 10)) {
+      if (currentPage < Math.ceil(starsLength / 10)) {
         dispatch(setCurrentPage(currentPage + 1));
       }
     }
     if (!number && side === "end") {
-      if (currentPage + 2 > Math.ceil(objectsLength / 10)) {
-        dispatch(setCurrentPage(Math.ceil(objectsLength / 10)));
+      if (currentPage + 2 > Math.ceil(starsLength / 10)) {
+        dispatch(setCurrentPage(Math.ceil(starsLength / 10)));
       } else {
         dispatch(setCurrentPage(currentPage + 2));
       }
     }
   };
 
-  //const setObjects = () => {
-  //  for (let i = 0; i <= json.length - 1; i++) {
-  //    dispatch(
-  //      setObjectsIntoBD(
-  //        json[i].img,
-  //        json[i].name,
-  //        json[i].country,
-  //        json[i].text,
-  //        json[i].rate
-  //      )
-  //    );
-  //  }
-  //};
+  const setStars = () => {
+    for (let i = 0; i <= json.length - 1; i++) {
+      dispatch(
+        setStarsIntoBD(json[i].name, json[i].galaxy, json[i].img, json[i].text)
+      );
+    }
+  };
   return (
     <div>
       <CardList
-        objects={objects}
-        isError={isError}
+        stars={stars}
         isLoader={isLoader}
         likedData={likedData}
-        sortUp={sortUp}
-        sortDown={sortDown}
         setLiked={setLiked}
-        deleteObg={deleteObg}
-        searchObject={searchObject}
+        deleteSt={deleteSt}
+        searchStar={searchStar}
         isSearch={isSearch}
         backToCatalog={backToCatalog}
-        objectsLength={objectsLength}
+        starsLength={starsLength}
         currentPage={currentPage}
         onChangePage={onChangePage}
-        // showObjects={showObjects}
       />
-      {/*<button onClick={setObjects}>SET</button>*/}
+      {/*<button onClick={setStars}>SET</button>*/}
     </div>
   );
 };

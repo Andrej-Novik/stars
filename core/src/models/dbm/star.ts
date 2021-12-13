@@ -4,19 +4,17 @@ import {
 	Column,
 } from 'typeorm'
 
-@Entity({ name: 'objects' })
+@Entity({ name: 'stars' })
 	
-export class ObjectItem {
+export class StarItem {
 	@PrimaryGeneratedColumn('uuid')
 	id: string
 	@Column()
-	img: string
-	@Column()
 	name: string
 	@Column()
-	country: string
+	galaxy: string
+	@Column()
+	img: string
 	@Column()
 	text: string
-	@Column()
-	rate: number
 }		

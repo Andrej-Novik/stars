@@ -1,26 +1,26 @@
 import Connector from "./connector";
 
 export class Core {
-  getObjects = async () => {
+  getStars = async () => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.get("/api/objects");
+      const response = await Connector.connector.get("/api/stars");
       result.value = response.data;
     } catch (e) {
       result.error = e.response;
     }
     return result;
   };
-  deleteObject = async (id) => {
+  deleteStar = async (id) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.delete(`/api/objects/${id}`);
+      const response = await Connector.connector.delete(`/api/stars/${id}`);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;
@@ -28,18 +28,17 @@ export class Core {
     return result;
   };
 
-  createObject = async (img, name, country, text, rate) => {
+  createStar = async (name, galaxy, img, text) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.post(`/api/objects/`, {
-        img,
+      const response = await Connector.connector.post(`/api/stars/`, {
         name,
-        country,
+        galaxy,
+        img,
         text,
-        rate,
       });
       result.value = response.data;
     } catch (e) {
@@ -48,15 +47,13 @@ export class Core {
     return result;
   };
 
-  updateObject = async (id, rate) => {
+  getStar = async (id) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.patch(`/api/objects/${id}`, {
-        rate,
-      });
+      const response = await Connector.connector.get(`/api/stars/${id}`);
       result.value = response.data;
     } catch (e) {
       result.error = e.response;
@@ -64,26 +61,15 @@ export class Core {
     return result;
   };
 
-  getObject = async (id) => {
+  searchStar = async (name) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await Connector.connector.get(`/api/objects/${id}`);
-      result.value = response.data;
-    } catch (e) {
-      result.error = e.response;
-    }
-    return result;
-  };
-  searchObject = async (name) => {
-    const result = {
-      value: null,
-      error: null,
-    };
-    try {
-      const response = await Connector.connector.get(`/api/objects/search/${name}`);
+      const response = await Connector.connector.get(
+        `/api/stars/search/${name}`
+      );
       result.value = response.data;
     } catch (e) {
       result.error = e.response;

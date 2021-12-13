@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import objects from "./objects";
+import stars from "./stars";
 
 const reducers = combineReducers({
-  objects
+  stars
 });
 export default reducers;

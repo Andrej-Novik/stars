@@ -1,10 +1,10 @@
 import style from './style.module.scss';
 import Button from '../../atoms/Button';
-import { createPages } from '../../../useCases/actions/paginationCreate';
+import { createPages } from '../../../redux/actions/paginationCreate';
 
-const Pagination = ({ objectsLength, currentPage, onChangePage }) => {
+const Pagination = ({ starsLength, currentPage, onChangePage }) => {
   const buttons = [];
-  if (objectsLength > 0) createPages(buttons, Math.ceil(objectsLength / 10), currentPage);
+  if (starsLength > 0) createPages(buttons, Math.ceil(starsLength / 10), currentPage);
   return (
     <div className={style.paginator} data-pagination-component>
       <div className={style.block}>
@@ -27,8 +27,8 @@ const Pagination = ({ objectsLength, currentPage, onChangePage }) => {
         />
         <Button
           data-test-toLastPage
-          value={Math.ceil(objectsLength / 10)}
-          data-personsPage={Math.ceil(objectsLength / 10)}
+          value={Math.ceil(starsLength / 10)}
+          data-personsPage={Math.ceil(starsLength / 10)}
           onClick={(event) => {
             onChangePage(+event.target.innerText);
           }}
@@ -46,7 +46,7 @@ const Pagination = ({ objectsLength, currentPage, onChangePage }) => {
             >
               <path
                 d="M12 4L4 12M4 12L12 20M4 12H20"
-                stroke="#F1B926"
+                stroke="#d8358f"
                 strokeWidth="2"
               />
             </svg>
@@ -65,7 +65,7 @@ const Pagination = ({ objectsLength, currentPage, onChangePage }) => {
             >
               <path
                 d="M12 4L20 12M20 12L12 20M20 12H4"
-                stroke="#F1B926"
+                stroke="#d8358f"
                 strokeWidth="2"
               />
             </svg>

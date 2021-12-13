@@ -1,7 +1,7 @@
-import Objects from "./core";
+import Stars from "./core";
 
 class Reposirory {
-  APIObjects = Objects;
+  APIStars = Stars;
 }
 
 export default new Reposirory();

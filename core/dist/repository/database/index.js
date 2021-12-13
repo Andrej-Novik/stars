@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connector_1 = __importDefault(require("./connector"));
-const object_1 = __importDefault(require("./object"));
+const stars_1 = __importDefault(require("./stars"));
 class DB {
     constructor() {
         this.connector = connector_1.default;
-        this.objects = object_1.default;
+        this.stars = stars_1.default;
     }
 }
 exports.default = new DB();

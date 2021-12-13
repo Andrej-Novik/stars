@@ -1,9 +1,9 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
-export class CreateObjectsTable20210212094500 implements MigrationInterface {
+export class CreateStarsTable20210212094500 implements MigrationInterface {
   async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'objects',
+        name: 'stars',
         columns: [
           {
             name: 'id',
@@ -13,17 +13,17 @@ export class CreateObjectsTable20210212094500 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'img',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
             name: 'name',
             type: 'varchar',
             isNullable: false,
           },
           {
-            name: 'country',
+            name: 'galaxy',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'img',
             type: 'varchar',
             isNullable: false,
           },
@@ -32,17 +32,12 @@ export class CreateObjectsTable20210212094500 implements MigrationInterface {
             type: 'varchar',
             isNullable: false,
           },
-          {
-            name: 'rate',
-            type: 'int',
-            isNullable: false,
-          },
         ],
       }),
       true
     );
   }
   async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('objects');
+    await queryRunner.dropTable('stars');
   }
 }

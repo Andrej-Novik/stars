@@ -1,9 +1,9 @@
-import ObjectsService from "./objectsService"
+import StarsService from "./starsService"
 
 class UseCases {
-	ObjectsService;
+	StarsService;
   constructor() {
-		this.ObjectsService = ObjectsService;
+		this.StarsService = StarsService;
   }
 }
 export default new UseCases();

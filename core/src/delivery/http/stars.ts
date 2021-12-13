@@ -3,7 +3,7 @@ const router = express.Router();
 import UseCases from "../../useCases";
 
 router.get("", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.getList();
+  const { value, error } = await UseCases.StarsService.getList();
   if (error) {
     res.status(500).json(error || new Error("UC undefined error"));
     return;
@@ -11,21 +11,20 @@ router.get("", async (req, res) => {
   res.status(200).json(value);
 });
 
-router.get("/pagination/", async (req,res) => {
-  const { value, error } = await UseCases.ObjectsService.getObjectsByQuery();
+router.get("/pagination/", async (req, res) => {
+  const { value, error } = await UseCases.StarsService.getStarsByQuery();
   if (error) {
     res.status(500).json(error || new Error("UC undefined error"));
     return;
   }
   res.status(200).json(value);
-})
+});
 router.post("", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.createObject(
-    req.body.img,
+  const { value, error } = await UseCases.StarsService.createStar(
     req.body.name,
-    req.body.country,
-    req.body.text,
-    req.body.rate,
+    req.body.galaxy,
+    req.body.img,
+    req.body.text
   );
   if (error) {
     res.status(500).json(error || new Error("UC undefined error"));
@@ -35,7 +34,7 @@ router.post("", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.deleteObject(
+  const { value, error } = await UseCases.StarsService.deleteStar(
     req.params.id
   );
   if (error) {
@@ -45,20 +44,8 @@ router.delete("/:id", async (req, res) => {
   res.status(200).json(value);
 });
 
-router.patch("/:id", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.editObject(
-    req.params.id,
-    req.body.rate
-  );
-  if (error) {
-    res.status(500).json(error || new Error("UC undefined error"));
-    return;
-  }
-  res.status(200).json(value);
-});
-
 router.get("/:id", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.getObject(req.params.id);
+  const { value, error } = await UseCases.StarsService.getStar(req.params.id);
   if (error) {
     res.status(500).json(error || new Error("UC undefined error"));
     return;
@@ -66,7 +53,9 @@ router.get("/:id", async (req, res) => {
   res.status(200).json(value);
 });
 router.get("/search/:name", async (req, res) => {
-  const { value, error } = await UseCases.ObjectsService.getObjectByName(req.params.name);
+  const { value, error } = await UseCases.StarsService.getStarByName(
+    req.params.name
+  );
   if (error) {
     res.status(500).json(error || new Error("UC undefined error"));
     return;

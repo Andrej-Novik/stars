@@ -1,33 +1,34 @@
 import Liked from "./component";
 import { useSelector, useDispatch } from "react-redux";
-import { setLikedObjects } from "../../../useCases/actions/objects";
+import { setLikedStars } from "../../../redux/actions/stars";
 
 const LikedContainer = () => {
-	const dispatch = useDispatch();
-	
-  let cards = JSON.parse(localStorage.getItem("liked")) || [];
-  let likedData = useSelector((state) => state.objects.likedObjects);
+  const dispatch = useDispatch();
 
-  const setLiked = (obj) => {
+  let cards = JSON.parse(localStorage.getItem("liked")) || [];
+  let likedData = useSelector((state) => state.stars.likedStars);
+
+  const setLiked = (st) => {
+    console.log(st);
     let cards = JSON.parse(localStorage.getItem("liked")) || [];
-    if (obj.isLiked) {
-      cards = cards.filter((i) => i.title !== obj.title);
+    if (st.isLiked) {
+      cards = cards.filter((i) => i.title !== st.title);
       localStorage.setItem("liked", JSON.stringify(cards));
-      dispatch(setLikedObjects());
+      dispatch(setLikedStars());
     } else {
       if (cards.length) {
         let is = false;
         cards.forEach((i) => {
-          if (obj.id === i.id) {
+          if (st.id === i.id) {
             is = true;
           }
         });
         if (!is) {
-          cards.push(obj);
+          cards.push(st);
           localStorage.setItem("liked", JSON.stringify(cards));
         }
       } else {
-        cards.push(obj);
+        cards.push(st);
         localStorage.setItem("liked", JSON.stringify(cards));
       }
     }

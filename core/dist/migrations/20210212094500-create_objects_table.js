@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateObjectsTable20210212094500 = void 0;
+exports.CreateStarsTable20210212094500 = void 0;
 const typeorm_1 = require("typeorm");
-class CreateObjectsTable20210212094500 {
+class CreateStarsTable20210212094500 {
     async up(queryRunner) {
         await queryRunner.createTable(new typeorm_1.Table({
-            name: 'objects',
+            name: 'stars',
             columns: [
                 {
                     name: 'id',
@@ -15,17 +15,17 @@ class CreateObjectsTable20210212094500 {
                     isPrimary: true,
                 },
                 {
-                    name: 'img',
-                    type: 'varchar',
-                    isNullable: false,
-                },
-                {
                     name: 'name',
                     type: 'varchar',
                     isNullable: false,
                 },
                 {
-                    name: 'country',
+                    name: 'galaxy',
+                    type: 'varchar',
+                    isNullable: false,
+                },
+                {
+                    name: 'img',
                     type: 'varchar',
                     isNullable: false,
                 },
@@ -34,16 +34,11 @@ class CreateObjectsTable20210212094500 {
                     type: 'varchar',
                     isNullable: false,
                 },
-                {
-                    name: 'rate',
-                    type: 'int',
-                    isNullable: false,
-                },
             ],
         }), true);
     }
     async down(queryRunner) {
-        await queryRunner.dropTable('objects');
+        await queryRunner.dropTable('stars');
     }
 }
-exports.CreateObjectsTable20210212094500 = CreateObjectsTable20210212094500;
+exports.CreateStarsTable20210212094500 = CreateStarsTable20210212094500;

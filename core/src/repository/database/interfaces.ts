@@ -4,16 +4,7 @@ export interface IConnector {
 
 export default interface IDB {
   connector: IConnector
-  objects: IObjectsRepository
+  stars: IStarsRepository
 }
 
-export interface IObjectsRepository {
-  //getList: () => Promise<IFuncResultModel<User[]>>
-  //getById: (id: string) => Promise<IFuncResultModel<Employee>>
-  //create: (data: INewEmployeeDTM) => Promise<IFuncResultModel<Employee>>
-  //update: (
-  //  id: string,
-  //  data: INewEmployeeDTM
-  //) => Promise<IFuncResultModel<Employee>>
-  //delete: (id: string) => Promise<IFuncResultModel<boolean>>
-}
+export interface IStarsRepository {}

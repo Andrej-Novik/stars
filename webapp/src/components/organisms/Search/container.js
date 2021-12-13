@@ -1,13 +1,13 @@
 import Search from './component';
 import { useDispatch } from 'react-redux';
 import {
-  setSearchObjectsFromBD
-} from '../../../useCases/actions/objects';
+  setSearchStarsFromBD
+} from '../../../redux/actions/stars';
 const SearchContainer = () => {
   const dispatch = useDispatch();
   const onSubmit = (name) => {
     if (name) {
-      dispatch(setSearchObjectsFromBD(name));
+      dispatch(setSearchStarsFromBD(name));
     }
   };
 

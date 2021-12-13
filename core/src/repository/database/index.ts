@@ -1,17 +1,17 @@
 import connector from './connector'
-import ObjectRepository from './object'
+import StarRepository from './stars'
 import IDB, {
 	IConnector,
-	IObjectsRepository,
+	IStarsRepository,
 } from './interfaces'
 
 class DB implements IDB {
 	connector: IConnector
-	objects: IObjectsRepository
+	stars: IStarsRepository
 	
 	constructor() {
 		this.connector = connector
-		this.objects = ObjectRepository
+		this.stars = StarRepository
 	}
 }
 export default new DB()
