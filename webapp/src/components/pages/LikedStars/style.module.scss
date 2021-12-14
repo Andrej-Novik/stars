@@ -1,0 +1,23 @@
+@import "../../../assets/styles/common.scss";
+
+.wrapper {
+  background-color: $grayBg;
+  min-height: calc(100vh - 5rem);
+}
+.container {
+  @include container;
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 2rem;
+	@include custom(1024) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@include custom(600) {
+		grid-template-columns: 1fr;
+	}
+  h3 {
+    @include H32;
+    color: red;
+  }
+}
