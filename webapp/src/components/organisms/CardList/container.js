@@ -132,7 +132,7 @@ const CardListContainer = () => {
         currentPage={currentPage}
         onChangePage={onChangePage}
       />
-      {/*<button onClick={setStars}>SET</button>*/}
+      <button onClick={setStars}>SET</button>
     </div>
   );
 };

@@ -25,12 +25,14 @@ const Card = ({
 
   let [textData, setText] = useState("");
   const modText = () => {
-    let mod = text.substr(0, 136).trim();
-    if (text[text.length - 1].includes(",", ".")) {
-      text = text.substr(0, text.length - 1);
+    if (text) {
+      let mod = text.substr(0, 136).trim();
+      if (text[text.length - 1].includes(",", ".")) {
+        text = text.substr(0, text.length - 1);
+      }
+      mod += "...";
+      setText(mod);
     }
-    mod += "...";
-    setText(mod);
   };
 
   const set = () => {
