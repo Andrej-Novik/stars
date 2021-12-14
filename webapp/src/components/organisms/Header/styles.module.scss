@@ -1,0 +1,35 @@
+@import "../../../assets//styles/common.scss";
+
+.header {
+  border-bottom: 1px solid #d8d5d5;
+  .container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+    .logo {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .liked {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 7.8rem;
+      height: 2.5rem;
+      border: 0.125rem solid $primary;
+      padding: 1.25rem;
+    }
+    .forLiked {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}

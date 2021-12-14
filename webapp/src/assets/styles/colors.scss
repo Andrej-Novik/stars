@@ -1,0 +1,12 @@
+$black: #2d2d2d;
+$primary: #d8358f;
+$galaxy: #fff;
+$galaxyBg: #d8358f;
+$gray: rgba(45, 45, 45, 1);
+$grayBg: #fafbfc;
+$white: #fff;
+
+@mixin cardBorder {
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+}
