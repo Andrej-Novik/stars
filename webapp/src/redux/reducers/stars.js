@@ -3,7 +3,6 @@ import {
   CHANGE_STAR_LOADER,
   ERROR_STAR_USERS,
   SET_CURRENT_STAR,
-  SET_SORT_STARS,
   SET_LIKED_STARS,
   DELETE_STAR,
   IS_SEARCH,
@@ -30,7 +29,6 @@ export const initialState = {
   searchStar: [],
   isError: false,
   isLoader: false,
-  sortBy: "up",
 };
 
 const stars = (state = initialState, action) => {
@@ -45,12 +43,6 @@ const stars = (state = initialState, action) => {
       return {
         ...state,
         likedStars: JSON.parse(localStorage.getItem("liked")) || [],
-      };
-    }
-    case SET_SORT_STARS: {
-      return {
-        ...state,
-        sortBy: action.payload,
       };
     }
     case CHANGE_STAR_LOADER: {

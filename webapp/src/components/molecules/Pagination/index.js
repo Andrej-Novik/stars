@@ -1,5 +1,5 @@
 import style from './style.module.scss';
-import Button from '../../atoms/Button';
+import Button from '../../atoms/Btn';
 import { createPages } from '../../../redux/actions/paginationCreate';
 
 const Pagination = ({ starsLength, currentPage, onChangePage }) => {

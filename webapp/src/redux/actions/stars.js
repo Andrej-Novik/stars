@@ -3,7 +3,6 @@ import {
   CHANGE_STAR_LOADER,
   ERROR_STAR_USERS,
   SET_CURRENT_STAR,
-  SET_SORT_STARS,
   SET_LIKED_STARS,
   DELETE_STAR,
   IS_SEARCH,
@@ -19,9 +18,6 @@ export const setStateStars = (stars) => {
 };
 export const setLikedStars = () => {
   return { type: SET_LIKED_STARS };
-};
-export const setSortStars = (stars) => {
-  return { type: SET_SORT_STARS, payload: stars };
 };
 export function starsLoading(value) {
   return { type: CHANGE_STAR_LOADER, value };

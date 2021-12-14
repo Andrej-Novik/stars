@@ -1,4 +1,4 @@
-import Card from "../../molecules/Card";
+import Card from "../../molecules/Star";
 import style from "./style.module.scss";
 
 const Liked = ({ liked, likedData, setLiked }) => {

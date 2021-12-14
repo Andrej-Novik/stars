@@ -1,4 +1,4 @@
-import CardList from "../../organisms/CardList";
+import CardList from "../../organisms/StarList";
 import style from "./style.module.scss";
 
 const Main = () => {

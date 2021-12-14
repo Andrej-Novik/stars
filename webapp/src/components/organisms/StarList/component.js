@@ -1,9 +1,9 @@
-import Card from "../../molecules/Card";
+import Card from "../../molecules/Star";
 import Loader from "../../atoms/Loader";
-import Search from "../Search/";
+import Search from "../Search";
 import style from "./style.module.scss";
 import row from "../../../assets/icons/rowToLeft.svg";
-import Pagination from "../../molecules/Pagination/";
+import Pagination from "../../molecules/Pagination";
 
 const CardList = ({
   stars,

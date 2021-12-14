@@ -5,7 +5,6 @@ import {
   getStarsFromBD,
   setStarsIntoBD,
   setStateStars,
-  setSortStars,
   setLikedStars,
   deleteStarFromBD,
   setSearchStars,
@@ -22,11 +21,6 @@ const CardListContainer = () => {
     dispatch(getStarsFromBD());
   }, []);
 
-  const sortBy = useSelector((state) => state.stars.sortBy);
-
-  useEffect(() => {
-    dispatch(setSortStars());
-  }, [sortBy]);
 
   const stars = useSelector((state) => state.stars.stars);
   const starsLength = useSelector((state) => state.stars.starsLength);
@@ -39,18 +33,6 @@ const CardListContainer = () => {
   useEffect(() => {
     dispatch(setStarsLength(stars.length));
   }, [stars, starsLength]);
-
-  const sortUp = (star) => {
-    const st = star.sort((a, b) => (a.rate > b.rate ? 1 : -1));
-    dispatch(setStateStars(st));
-    dispatch(setSortStars("up"));
-  };
-
-  const sortDown = (star) => {
-    const st = star.sort((a, b) => (a.rate > b.rate ? -1 : 1));
-    dispatch(setStateStars(st));
-    dispatch(setSortStars("down"));
-  };
 
   const deleteSt = (id) => {
     dispatch(deleteStarFromBD(id));
@@ -132,7 +114,7 @@ const CardListContainer = () => {
         currentPage={currentPage}
         onChangePage={onChangePage}
       />
-      <button onClick={setStars}>SET</button>
+      {/*<button onClick={setStars}>SET</button>*/}
     </div>
   );
 };
